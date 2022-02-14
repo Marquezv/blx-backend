@@ -1,4 +1,3 @@
-from urllib import response
 from fastapi import FastAPI, Depends, status
 from typing import List, Optional
 from sqlalchemy.orm import Session
