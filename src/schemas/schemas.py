@@ -1,6 +1,12 @@
 from pydantic import BaseModel 
 from typing import Optional, List
 
+class SimpleUser(BaseModel):
+    id: Optional[int] = None
+    name: str
+    telephone: str
+    class Config:
+        orm_mode = True
 
 
 class SimpleProduct(BaseModel):
