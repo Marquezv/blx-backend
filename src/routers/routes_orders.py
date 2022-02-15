@@ -1,3 +1,4 @@
+from urllib import response
 from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
@@ -14,23 +15,23 @@ router = APIRouter()
 def create_products(order: Order, db: Session = Depends(get_db)):
     created_order = RepositoryOrder(db).create(order)
     return created_order
-# Listar Orders
 
-@router.get('/orders/{order_id}')
+# Buscar por order_id
+@router.get('/orders/{order_id}', response_model=Order)
 def get(order_id: int, db: Session = Depends(get_db)):
-    orders = RepositoryOrder(db).get()
+    orders = RepositoryOrder(db).get(order_id)
+    if not orders:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Desculpe não encontrei nenhum pedido!' )
     return orders
 
-# Selecionar Produtos
-@router.get('/orders/{order_id}')
-def get_for_user(order_id: int, db: Session = Depends(get_db)):
-    order = RepositoryOrder(db).get_for_user(order_id)
-    if not order:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Desculpe não encontrei nenhum pedido!' )
+# Meus Pedidos
+@router.get('/orders/{user_id}/purchases', response_model=List[Order])
+def get_for_user(user_id: int, db: Session = Depends(get_db)):
+    order = RepositoryOrder(db).get_for_user(user_id)
     return order
 
 # Minhas Vendas
-@router.post('/orders/{product_id}')
+@router.get('/orders/{product_id}/sold', response_model=List[Order])
 def get_for_product(product_id: int, db:Session = Depends(get_db)):
     order = RepositoryOrder(db).get_for_product(product_id)
     return order

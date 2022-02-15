@@ -32,11 +32,15 @@ class RepositoryOrder():
    
     # listar_meus_pedidos_por_usuario_id
     def get_for_user(self, user_id: int):
-        stmt = select(models.Order).where(models.Order.user_id == user_id)
+        stmt = select(models.Order) \
+        .where(models.Order.user_id == user_id)
         orders = self.db.execute(stmt).scalars().all()
         return orders
 
     # listar_minhas_vendas_por_usuario_id
     def get_for_product(self, product_id: int):
-        stmt = select(models.Order).where(models.Order.product_id == product_id)
-        orders = self.sb.execute(stmt).scalars().all()
+        stmt = select(models.Order, models.Product) \
+        .join_from(models.Order, models.Product)\
+        .where(models.Order.product_id == product_id)
+        orders = self.db.execute(stmt).scalars().all()
+        return orders
