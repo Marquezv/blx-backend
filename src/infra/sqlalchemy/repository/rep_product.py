@@ -31,7 +31,7 @@ class RepositoryProduct():
     # Selecionar
     def get(self, product_id):
         stmt = select(models.Product).filter_by(id=product_id)
-        product = self.db.execute(stmt).scalars().one()
+        product = self.db.execute(stmt).scalars().first()
         return product
 
     # Atualizar

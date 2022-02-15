@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
 
@@ -15,10 +15,13 @@ def list_products(db: Session = Depends(get_db)):
     products = RepositoryProduct(db).list()
     return products
 
+
 # Selecionar Produtos
 @router.get('/products/{product_id}', response_model=Product) 
 def select_product(product_id: int, db: Session = Depends(get_db)):
     product = RepositoryProduct(db).get(product_id)
+    if not product:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Desculpe não encontrei este produto, id = {product_id}' )
     return product
 
 # Criar Produtos

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.routers import routes_users, routes_products
+from src.routers import routes_orders, routes_users, routes_products
 
 origins = [
     "http://localhost:8080",
@@ -21,3 +21,5 @@ app.add_middleware(
 app.include_router(routes_users.router)
 # ================ PRODUCTS ================
 app.include_router(routes_products.router)
+# ================ ORDERS ================
+app.include_router(routes_orders.router)

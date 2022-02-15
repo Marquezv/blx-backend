@@ -44,3 +44,18 @@ class Product(BaseModel):
         orm_mode = True
 
 
+class Order(BaseModel):
+    id: Optional[int] = None
+    amount: int
+    delivery_place: Optional[str]
+    delivery_type: str
+    notes: Optional[str] = 'Sem Observações'
+    
+    user_id: Optional[int]
+    product_id: Optional[int]
+
+    user: Optional[SimpleUser]
+    product: Optional[SimpleProduct]
+
+    class Config:
+        orm_mode = True
