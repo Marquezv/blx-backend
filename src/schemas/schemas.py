@@ -67,3 +67,7 @@ class Order(BaseModel):
 
     class Config:
         orm_mode = True
+
+class SimpleOrder(BaseModel):
+    id: Optional[int] = None
+    product: Optional[SimpleProduct]

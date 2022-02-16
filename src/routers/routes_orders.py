@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.orm import Session
 from src.infra.sqlalchemy.models.models import User
 from src.infra.sqlalchemy.repository.rep_order import RepositoryOrder
-from src.schemas.schemas import Order, User
+from src.schemas.schemas import Order, SimpleOrder, User
 from src.infra.sqlalchemy.config.database import get_db
 from src.routers.auth_utils import get_logged_user
 
@@ -32,7 +32,7 @@ def get_for_user(user: User = Depends(get_logged_user), db: Session = Depends(ge
     return order
 
 # Minhas Vendas
-@router.get('/orders/{product_id}/sold', response_model=List[Order])
-def get_for_product(product_id: int, db:Session = Depends(get_db)):
-    order = RepositoryOrder(db).get_for_product(product_id)
-    return order
+@router.get('/orders/{user_id}/sold', response_model=List[Order])
+def get_for_product(user: User = Depends(get_logged_user), db:Session = Depends(get_db)):
+    products_sale = RepositoryOrder(db).get_for_product(user.id)
+    return products_sale

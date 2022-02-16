@@ -38,9 +38,9 @@ class RepositoryOrder():
         return orders
 
     # listar_minhas_vendas_por_usuario_id
-    def get_for_product(self, product_id: int):
-        stmt = select(models.Order, models.Product) \
+    def get_for_product(self, user_id: int):
+        stmt = select(models.Order) \
         .join_from(models.Order, models.Product)\
-        .where(models.Order.product_id == product_id)
+        .where(models.Product.user_id == user_id)
         orders = self.db.execute(stmt).scalars().all()
         return orders
