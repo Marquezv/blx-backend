@@ -1,3 +1,4 @@
+from os import access
 from pydantic import BaseModel 
 from typing import Optional, List
 
@@ -30,6 +31,13 @@ class User(BaseModel):
     class Config:
         orm_mode = True
 
+class LoginData(BaseModel):
+    telephone: str
+    password: str
+
+class LoginSucess(BaseModel):
+    user: SimpleUser
+    access_token: str
 
 class Product(BaseModel):
     id: Optional[int] = None

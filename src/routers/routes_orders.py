@@ -1,10 +1,11 @@
-from urllib import response
 from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
+from src.infra.sqlalchemy.models.models import User
 from src.infra.sqlalchemy.repository.rep_order import RepositoryOrder
-from src.schemas.schemas import Order
+from src.schemas.schemas import Order, User
 from src.infra.sqlalchemy.config.database import get_db
+from src.routers.auth_utils import get_logged_user
 
 
 router = APIRouter()
@@ -25,9 +26,9 @@ def get(order_id: int, db: Session = Depends(get_db)):
     return orders
 
 # Meus Pedidos
-@router.get('/orders/{user_id}/purchases', response_model=List[Order])
-def get_for_user(user_id: int, db: Session = Depends(get_db)):
-    order = RepositoryOrder(db).get_for_user(user_id)
+@router.get('/orders', response_model=List[Order])
+def get_for_user(user: User = Depends(get_logged_user), db: Session = Depends(get_db)):
+    order = RepositoryOrder(db).get_for_user(user.id)
     return order
 
 # Minhas Vendas

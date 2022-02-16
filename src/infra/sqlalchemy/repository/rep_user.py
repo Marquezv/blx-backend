@@ -1,3 +1,4 @@
+import re
 from sqlalchemy import select, delete
 from sqlalchemy.orm import Session
 from src.schemas import schemas
@@ -29,6 +30,10 @@ class RepositoryUser():
         stmt = select(models.User).filter_by(id=user_id)
         user = self.db.execute(stmt).scalars().one()
         return user
+
+    def get_for_telephone(self, user_telephone: str) -> models.User:
+        stmt = select(models.User).where(models.User.telephone == user_telephone)
+        return self.db.execute(stmt).scalars().first()
 
     # Deletar
     def delete(self, user_id: int):
