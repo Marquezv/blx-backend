@@ -1,4 +1,3 @@
-import re
 from sqlalchemy import select, delete
 from sqlalchemy.orm import Session
 from src.schemas import schemas

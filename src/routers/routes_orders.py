@@ -13,8 +13,8 @@ router = APIRouter()
 # ================ PRODUCTS ================
 # Criar Orders
 @router.post('/orders', status_code=status.HTTP_201_CREATED, response_model=Order)
-def create_products(order: Order, db: Session = Depends(get_db)):
-    created_order = RepositoryOrder(db).create(order)
+def create_products(order: Order, user: User = Depends(get_logged_user), db: Session = Depends(get_db)):
+    created_order = RepositoryOrder(db).create(order, user.id)
     return created_order
 
 # Buscar por order_id
@@ -36,3 +36,4 @@ def get_for_user(user: User = Depends(get_logged_user), db: Session = Depends(ge
 def get_for_product(user: User = Depends(get_logged_user), db:Session = Depends(get_db)):
     products_sale = RepositoryOrder(db).get_for_product(user.id)
     return products_sale
+
