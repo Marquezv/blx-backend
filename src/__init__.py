@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.routers import routes_auth, routes_orders, routes_products
 from src.jobs.write_notification import write_notification
 
+<<<<<<< HEAD
 
 app = FastAPI()
 origins = [
@@ -13,11 +14,21 @@ origins = [
     "http://localhost:8000",
     "http://127.0.0.1:5500"
 ]
+=======
+origins = []
+
+
+app = FastAPI()
+>>>>>>> 41274a82e399b9efc435d8c4cca3110881c3866d
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
+<<<<<<< HEAD
     allow_methods=["POST", "GET"],
+=======
+    allow_methods=["*"],
+>>>>>>> 41274a82e399b9efc435d8c4cca3110881c3866d
     allow_headers=["*"],
 )
 
