@@ -4,10 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.routers import routes_auth, routes_orders, routes_products
 from src.jobs.write_notification import write_notification
 
-origins = [
-    "http://localhost:8080",
-    "http://127.0.0.1:8000",
-]
+origins = []
 
 
 app = FastAPI()
