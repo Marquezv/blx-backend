@@ -9,13 +9,13 @@ class RepositoryOrder():
         self.db = db
     
     # Criar
-    def create(self, order: schemas.Order):
+    def create(self, order: schemas.Order, user_id):
         db_order = models.Order(
             amount = order.amount,
             delivery_place = order.delivery_place,
             delivery_type = order.delivery_type,
             notes = order.notes,
-            user_id = order.user_id,
+            user_id = user_id,
             product_id = order.product_id   
         )
 

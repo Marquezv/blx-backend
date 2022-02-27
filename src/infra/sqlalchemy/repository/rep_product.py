@@ -9,13 +9,13 @@ class RepositoryProduct():
         self.db = db
         
     # Criar
-    def create(self, product: schemas.Product):
+    def create(self, product: schemas.Product, user_id):
         db_product = models.Product(
             name = product.name,
             details = product.details,
             price = product.price,
             available = product.available,
-            user_id = product.user_id
+            user_id = user_id
         )
 
         self.db.add(db_product)
