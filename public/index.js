@@ -1,5 +1,5 @@
 async function loadProducts(){
-    const response = await axios.get("http://127.0.0.1:8000/products")
+    const response = await axios.get("https://blx-app.herokuapp.com/products")
     
     console.log(response.data)
 
