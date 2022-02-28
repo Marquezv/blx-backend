@@ -1,3 +1,4 @@
+from itertools import product
 from sqlalchemy import select, delete, update
 from sqlalchemy.orm import Session
 from src.schemas import schemas

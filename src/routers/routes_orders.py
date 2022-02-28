@@ -1,9 +1,10 @@
+from urllib import response
 from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
 from src.infra.sqlalchemy.models.models import User
 from src.infra.sqlalchemy.repository.rep_order import RepositoryOrder
-from src.schemas.schemas import Order, SimpleOrder, User
+from src.schemas.schemas import Order, Product, SimpleOrder, User, SimpleProduct
 from src.infra.sqlalchemy.config.database import get_db
 from src.routers.auth_utils import get_logged_user
 
