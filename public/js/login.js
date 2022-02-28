@@ -22,9 +22,7 @@ function sendToBack(){
         axios.defaults.headers.common = {'Authorization': `Bearer ${response.data.access_token}`}
         
         alert(`Parabéns ${response.data.user.name} funcionou tudo certinho!`)
-        axios.get('http://127.0.0.1:8000/products/me', {
-            headers: {'Authorization': `Bearer ${response.data.access_token}`}})
-            .then((res) => {console.log(res.data)})
+        window.location.href = "me.html";
     }
 }
 
