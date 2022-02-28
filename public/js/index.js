@@ -34,6 +34,7 @@ async function loadProducts(){
 
    
 }
+
 function app(){
     console.log('APP INICIADA')
     loadProducts()

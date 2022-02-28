@@ -1,5 +1,8 @@
 async function loadProducts(){
-    const response = await axios.get("http://127.0.0.1:8000/products/me")
+    const response = await axios.get("https://blx-app.herokuapp.com/products/me", {
+        headers: {'Authorization': `Bearer ${response.data.access_token}`}}
+        )
+
     
     console.log(response.data)
 

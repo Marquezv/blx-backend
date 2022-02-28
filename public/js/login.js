@@ -19,10 +19,12 @@ function sendToBack(){
             password: password
         })
         console.log(response.data)
-        axios.defaults.headers.common = {'Authorization': `Bearer ${response.data.access_token}`}
         
         alert(`Parabéns ${response.data.user.name} funcionou tudo certinho!`)
-        window.location.href = "me.html";
+        const resposta = await axios.get('https://blx-app.herokuapp.com/products/me', {
+            headers: {'Authorization': `Bearer ${response.data.access_token}`}})
+        
+        console.log(resposta)
     }
 }
 
