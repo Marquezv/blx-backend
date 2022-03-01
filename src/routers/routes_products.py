@@ -43,10 +43,3 @@ def update_products(product_id: int, product: Product, user: User = Depends(get_
 def delete_products(product_id: int, db:Session = Depends(get_db)):
     delete_product = RepositoryProduct(db).delete(product_id)
     return delete_product
-
-# Meus Produtos
-@router.get('/products/me')
-def get_my_products( user: User = Depends(get_logged_user), db:Session = Depends(get_db)):
-    my_products = RepositoryProduct(db).get_my_products(user.id)
-    print(user.id)
-    return my_products

@@ -52,8 +52,3 @@ class RepositoryProduct():
         self.db.execute(stmt)
         self.db.commit()
 
-    # Meus Produtos
-    def get_my_products(self, user_id):
-        stmt = select(models.Product).filter_by(user_id=user_id)
-        product = self.db.execute(stmt).scalars().all()
-        return product

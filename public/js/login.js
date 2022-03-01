@@ -1,3 +1,5 @@
+const url = 'https://blx-app.herokuapp.com'
+
 function variaveis(){
     const form_register = document.getElementById('form-register'),
         input_telephone = document.getElementById('telephone'),
@@ -14,19 +16,17 @@ function sendToBack(){
         const telephone = input_telephone.value
         const password = input_password.value
 
-        const response = await axios.post('https://blx-app.herokuapp.com/auth/token', {
+        const response = await axios.post(`${url}/auth/token`, {
             telephone: telephone,
             password: password
         })
         console.log(response.data)
         
         alert(`Parabéns ${response.data.user.name} funcionou tudo certinho!`)
-       
+        sessionStorage.setItem('Authorization',`${response.data.access_token}`)
+        window.location.replace('http://127.0.0.1:5501/public/me.html')
+
     }
 }
 
-
-function app(){
-    sendToBack()
-}
-app()
+sendToBack()

@@ -49,3 +49,10 @@ def me(user: User = Depends(get_logged_user)):
     # Decoficar o Token, Pegar telephone, Buscar Usuario
     return user
 
+
+# Meus Produtos
+@router.get('/me/products')
+def get_my_products( user: User = Depends(get_logged_user), db:Session = Depends(get_db)):
+    my_products = RepositoryUser(db).get_my_products(user.id)
+    print(user.id)
+    return my_products
