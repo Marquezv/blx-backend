@@ -1,37 +1,40 @@
-async function loadProducts(){
-    const response = await axios.get("https://blx-app.herokuapp.com/products")
+const url = "https://blx-app.herokuapp.com/products"
+// const card = 
+//             `<div class="col">
+//             <div class="card">
+//             <img src="./img/gato.jpg" class="card-img-top" alt="...">
+//             <div class="card-body">
+//                 <h5 class="card-header">${products.name}</h5>
+//                 <p class="card-text">
+//                 <ul>
+//                     <li>${products.details}</li>
+//                     <li>R$ ${products.price}</li>
+//                 </ul>
+//                 </p>
+//                 <div class="card-footer">
+//                 <button class="btn btn-success">Veja Mais</button>
+//                 </div>
+//             </div>
+//             </div>
+//             </div>`
+
+function loadProducts(){
+    axios.get(url)
+    .then(response => {
+        const products = response.data
+        console.log(products)
+    })
     
-    console.log(response.data)
+    // const list = document.getElementById("div-list-products")
+    // list.innerHTML = '';
 
-    const products = response.data
-
-    const list = document.getElementById("div-list-products")
-    list.innerHTML = '';
-
-    products.forEach(products => {
-        const card = `<div class="col">
-                        <div class="card">
-                        <img src="./img/gato.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-header">${products.name}</h5>
-                            <p class="card-text">
-                            <ul>
-                                <li>${products.details}</li>
-                                <li>R$ ${products.price}</li>
-                            </ul>
-                            </p>
-                            <div class="card-footer">
-                            <button class="btn btn-success">Veja Mais</button>
-                            </div>
-                        </div>
-                        </div>
-                    </div>`
-        const item = document.createElement('li')
-        item.innerHTML = card;
+    // products.forEach(products => {
+        
+    //     const item = document.createElement('li')
+    //     item.innerHTML = card;
     
-        list.appendChild(item)
-    });
-
+    //     list.appendChild(item)
+    // });
    
 }
 

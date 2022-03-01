@@ -21,14 +21,9 @@ function sendToBack(){
         console.log(response.data)
         
         alert(`Parabéns ${response.data.user.name} funcionou tudo certinho!`)
-        const resposta = await axios.get('https://blx-app.herokuapp.com/products/me', {
-            headers: {'Authorization': `Bearer ${response.data.access_token}`}})
-        
-        console.log(resposta)
+       
     }
 }
-
-
 
 
 function app(){
