@@ -3,13 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="js/me.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <style>
 
-  </style>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	<title>DLX - Me</title>
 </head>
@@ -17,17 +16,21 @@
       <div class="container">
         <nav class="navMenu">
           <ul class="nav justify-content-center">
+          
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Active</a>
+              <a class="nav-link"  href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" active href="me.html">Me</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="pedidos.html">Orders</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+              <a class="nav-link" href="pedidos.html">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pedidos.html">Login</a>
             </li>
           </ul>
         </nav>
@@ -35,8 +38,41 @@
         <div class="p-5 mb-4 bg-light rounded-3">
           <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Minha Loja</h1>
-            <button class="btn btn-primary btn-lg" type="button">Example button</button>
+            <a href="#myModal" role="button" class="btn btn-lg btn-primary" data-bs-toggle="modal">Criar Novo Produto</a>
           </div>
+        </div>
+        <!--Modal-->
+          <div id="myModal" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Seu Novo Produto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form-product">
+                        <div class="input-group mb-2">
+                            <input id="name" type="text" class="form-control" placeholder="name" aria-label="name">                       
+                        </div>
+                        <div class="input-group mb-2">
+                            <input id="details" type="details" class="form-control" placeholder="details" aria-label="details">
+                        </div>
+                        <div class="input-group mb-2">
+                            <input id="price" type="price" class="form-control" placeholder="price" aria-label="Price">
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="avaliable" value="true">
+                          <label class="form-check-label" for="inlineCheckbox1">Avaliable</label>
+                        </div>
+                        <div class="modal-footer">
+                          <button id="btn_back" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                          <button id="btn_saved" type="button" class="btn btn-primary" onclick="saveProduct()">Salvar Produto</button>
+                        </div>
+                      </form>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
         <!-- CARDS-1 -->
           <ul id="list-products" style="list-style: none; padding: 0%;">
@@ -44,8 +80,13 @@
             </div>
           </ul>
           
-        </div> 
-      
+        </div>
+
+        <script>
+          $("#btn-mensagem").click(function(){
+              $("#modal-mensagem").modal();
+          });
+        </script>
 
 </body>
 </html>

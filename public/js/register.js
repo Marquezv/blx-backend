@@ -11,7 +11,6 @@ console.log(form_register, input_name, input_telephone, input_password)
 function sendToBack(){
     form_register.onsubmit = async(event) =>{
         event.preventDefault()
-
         const name = input_name.value
         const telephone = input_telephone.value
         const password = input_password.value
@@ -23,10 +22,11 @@ function sendToBack(){
         })
 
         alert(`Parabéns ${name} funcionou tudo certinho!`)
+        //TROCAR
+        window.location.replace('http://127.0.0.1:5501/public/login.html')
 
     }
 }
-
 
 function app(){
     sendToBack()
