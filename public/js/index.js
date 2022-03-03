@@ -44,7 +44,7 @@ function loadProducts(){
                       <label>R$ ${products.price}</label>
                     </p>
                     <div class="card-footer">
-                    <button class="btn" onclick="viewProduct(${products.id})" > Veja Mais </button>
+                    <button class="btn" onclick="viewProduct(${products.id}, ${products.user.id})" > Veja Mais </button>
                     </div>
                 </div>
                 </div>
@@ -65,8 +65,9 @@ function loadProducts(){
 }
 loadProducts()
 
-function viewProduct(id){
+function viewProduct(id, user_id){
     sessionStorage.setItem('product_id', id)
+    sessionStorage.setItem('user_id', user_id)
     window.location.replace('product.html')
 
 }

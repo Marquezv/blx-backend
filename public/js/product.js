@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function(){
     .then(response => {
         const product = response.data
 
-        console.log(product)
-
         const banner = document.getElementById('banner-text')
         const divCards = document.getElementById('div-product')
 
@@ -37,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     })
-    axios.get(`${url}/products/${user_id}`)
+    axios.get(`${url}/products/store/${user_id}`)
     .then(response => {
-      const products = response.data
+      // const products = response.data
       const carousel = document.getElementById('carousel')
-      
+      console.log(response.data[0])
       products.forEach(products => {
 
         const carouselCard = `
@@ -50,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function(){
             <div class="card">
             <img src="./img/gato.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 >${product.name}</h5>
+                <h5 >${products.name}</h5>
                 <p class="card-text">
-                  <p>${product.details}</p>
-                  <label>R$ ${product.price}</label>
+                  <p>${products.details}</p>
+                  <label>R$ ${products.price}</label>
                 </p>
                 <div class="card-footer">
                   <button class="btn"> Adicionar ao Carrinho </button>
@@ -64,8 +62,7 @@ document.addEventListener('DOMContentLoaded', function(){
       </div>`
 
       
-      carousel.appendChild(carouselCard)
-
+      carousel.innerHTML = carouselCard
       })
 
 
