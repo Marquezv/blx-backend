@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
         createOrder(response)
     })
+
+    axios.get(`${url}/orders/1/sold`, {
+        headers: {
+            'Authorization' : `Bearer ${token}`
+        }
+    }).then(response => {
+        viewSold(response)
+    })
  });
 
 
@@ -42,9 +50,26 @@ function createOrder(response){
             const row = document.createElement('tr')
             row.innerHTML = OrderOnTable;
             table.appendChild(row)
-            console.log(orders.user.name)
+        
         })
-    console.log('CRIADO')
 }
 
 
+function viewSold(response){
+   
+    const orders = response.data
+    
+        orders.forEach(orders => {
+            const OrderOnTable =  `
+            <th scope="row">${orders.id}</th>
+            <td>${orders.product.name}</td>
+            <td>${orders.delivery_type}</td>
+            <td>${orders.notes}</td>
+            <td>${orders.user.name}</td>
+        `
+            const table = document.getElementById("table-body-view-solds")
+            const row = document.createElement('tr')
+            row.innerHTML = OrderOnTable;
+            table.appendChild(row)
+        })
+}

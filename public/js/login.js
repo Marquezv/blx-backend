@@ -24,9 +24,9 @@ function sendToBack(){
         
         alert(`Parabéns ${response.data.user.name} funcionou tudo certinho!`)
         sessionStorage.setItem('Authorization',`${response.data.access_token}`)
-
+        sessionStorage.setItem('UserName' , `${response.data.user.name}`)
         //TROCAR
-        window.location.replace('http://127.0.0.1:5501/public/me.html')
+        window.location.replace('me.html')
 
     }
 }

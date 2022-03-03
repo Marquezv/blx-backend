@@ -1,3 +1,4 @@
+from itertools import product
 from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
@@ -43,3 +44,10 @@ def update_products(product_id: int, product: Product, user: User = Depends(get_
 def delete_products(product_id: int, db:Session = Depends(get_db)):
     delete_product = RepositoryProduct(db).delete(product_id)
     return delete_product
+
+# Lista de Produtos do Vendedor
+@router.get('/products/store/{user_id}')
+def store_products(user_id: int, db:Session = Depends(get_db)):
+    store_product = RepositoryProduct(db).store_list(user_id)
+    return store_product
+

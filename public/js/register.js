@@ -23,7 +23,7 @@ function sendToBack(){
 
         alert(`Parabéns ${name} funcionou tudo certinho!`)
         //TROCAR
-        window.location.replace('http://127.0.0.1:5501/public/login.html')
+        window.location.replace('login.html')
 
     }
 }

@@ -28,6 +28,11 @@ class RepositoryProduct():
         products = self.db.query(models.Product).all()
         return products
 
+    def store_list(self, user_id):
+        stmt = select(models.Product).filter_by(user_id=user_id)
+        product = self.db.execute(stmt).all()
+        return product
+
     # Selecionar
     def get(self, product_id):
         stmt = select(models.Product).filter_by(id=product_id)

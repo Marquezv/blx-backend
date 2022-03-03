@@ -12,10 +12,10 @@ class SimpleUser(BaseModel):
 class SimpleProduct(BaseModel):
     id: Optional[int] = None    
     name: str
-    details: str
     price: float
-    available: bool 
-    # user: Optional[SimpleUser]
+    available: bool
+    details: str
+   # user: Optional[SimpleUser]
     class Config:
         orm_mode = True
 

@@ -15,10 +15,7 @@ function createProducts(products_name, products_details, products_price, list){
         <div class="card-body">
             <h5 class="card-header">${products_name}</h5>
             <p class="card-text">
-            <ul>
-                <li>${products_details}</li>
-                <li>R$ ${products_price}</li>
-            </ul>
+            <label>R$ ${products_price}</label>
             </p>
             <div class="card-footer">
             <button class="btn btn-success">Veja Mais</button>
