@@ -1,4 +1,5 @@
 import { registerUser } from './routes.js'
+import { validate_input } from "./tools.js"
 
 function variaveis(){
     const form_register = document.getElementById('form-register'),
@@ -8,34 +9,22 @@ function variaveis(){
     return [form_register, input_name, input_telephone, input_password]
 }
 const [form_register, input_name, input_telephone, input_password] = variaveis()
-console.log(form_register, input_name, input_telephone, input_password)
 
 function sendToBack(){
-    form_register.onsubmit = async(event) =>{
+    form_register.onsubmit = (event) =>{
         event.preventDefault()
-        const name = input_name.value
-        const telephone = input_telephone.value
-        const password = input_password.value
+        const input_group = form_register.getElementsByTagName('input')
+        
+        if(validate_input(input_group)){
+            const name = input_name.value
+            const telephone = input_telephone.value
+            const password = input_password.value
 
-        await axios.post('https://blx-app.herokuapp.com/auth/signup', {
-            name: name,
-            telephone: telephone,
-            password: password
-        })
-        .then(response =>{
-            console.log(response)
-        })
-        .catch(response => console.log(response)
-        )
-
-        // alert(`Parabéns ${name} funcionou tudo certinho!`)
-        // //TROCAR
-        // window.location.replace('login.html')
-
+            registerUser(name, telephone, password)
+            console.log(validate_input(input_group))  
+        }
+        
+        
     }
 }
-
-function app(){
-    sendToBack()
-}
-app()
+sendToBack()

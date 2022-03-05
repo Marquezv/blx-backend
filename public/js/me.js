@@ -1,96 +1,73 @@
+import { validate_input, filterFloat } from './tools.js'
+import { createProduct } from './routes.js'
+import { getMyProducts } from './routes.js'
+
 const token = sessionStorage.getItem('Authorization')
 const url = 'https://blx-app.herokuapp.com'
-var filterFloat = function (value) {
-    if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
-      .test(value))
-      return Number.parseFloat(value);
-  return NaN;
-}
-
-function createProducts(products_name, products_details, products_price, list){       
-        const card = 
-        `<div class="col">
-        <div class="card">
-        <img src="./img/gato.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-header">${products_name}</h5>
-            <p class="card-text">
-            <label>R$ ${products_price}</label>
-            </p>
-            <div class="card-footer">
-            <button class="btn btn-success">Veja Mais</button>
-            </div>
-        </div>
-        </div>
-        </div>`
-
-
-        const item = document.createElement('li')
-        item.innerHTML = card;
-    
-        list.appendChild(item)
-
-}
 
 function variaveis() {
     const form_product = document.getElementById('form-product'),
         input_name = document.getElementById('name'),
         input_details = document.getElementById('details'),
         input_price = document.getElementById('price'),
-        checkbox = document.getElementById('avaliable')
-
-        modal = document.getElementById('myModal')
-        btn_back = document.getElementById('btn_back')
-    return [form_product, input_name, input_details, input_price, checkbox, modal]
+        modal = document.getElementById('myModal'),
+        btn_back = document.getElementById('btn_back'),
+        btn_saved = document.getElementById('btn_saved')
+    return [form_product, input_name, input_details, input_price, modal, btn_saved, btn_back]
 }
-
-
-function loadMyProducts(){
-    
-   
-    axios.get(`${url}/auth/me/products`, { headers: { Authorization: `Bearer ${token}` }})
-    
-    .then(response => {
-        const list = document.getElementById("div-list-products")
-        list.innerHTML = '';
-        const data = response.data
-        console.log(data)
-        data.forEach(data => {
-            createProducts(data.name, data.details, data.price, list)
-        })
-    })
-    .catch(error => console.log(error))
-}
-loadMyProducts()
-
+const [form_product, input_name, input_details, input_price, modal, btn_saved, btn_back] = variaveis()
 
 function saveProduct(){
-    const [form_product, input_name, input_details, input_price, checkbox, modal] = variaveis()
-   
-    const products_name = input_name.value
-    const  products_details = input_details.value
-    const products_price = input_price.value
-    const products_price_float = filterFloat(products_price)
-
-    const CreateProduct = {
-            name: products_name,
-            details: products_details,
-            price: products_price_float,
-            available: checkbox.checked
-        }
-
-    axios.post(`${url}/products`, CreateProduct, {
-        headers: {
-            'Authorization' : `Bearer ${token}`
-        }
-    }).then(response => {
-
-        btn_back.click();
-        document.location.reload(true);
+    console.log('Aqui')
+    btn_saved.onclick = (event) =>{
+        event.preventDefault()
+        const input_group = modal.getElementsByTagName('input')
         
-    })
-
+        if(validate_input(input_group)){
+            const product_name = input_name.value
+            const  product_details = input_details.value
+            const product_price = filterFloat(input_price.value)
+            createProduct(product_name, product_details, product_price)
+            .then(response => {
+                btn_back.click()
+                document.location.reload(true)
+            })
+           
+        }
+         
+    }
     
-
 }
+saveProduct()
 
+function loadMyProducts(){
+    getMyProducts()
+    .then(response => {
+        const products = response.data
+        const listCards = document.getElementById('div-list-products')
+
+        products.forEach(product => {
+            const card = 
+                `<div class="col">
+                <div class="card">
+                <img src="./img/gato.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-header">${product.name}</h5>
+                    <p class="card-text">
+                    <label>R$ ${product.price}</label>
+                    </p>
+                    <div class="card-footer">
+                    <button class="btn btn-success">Veja Mais</button>
+                    </div>
+                </div>
+                </div>
+                </div>`
+            const item = document.createElement('li')
+            item.innerHTML = card;
+    
+            listCards.appendChild(item)
+            
+        });
+    })
+}
+loadMyProducts()
