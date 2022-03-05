@@ -1,9 +1,8 @@
-const url = "https://blx-app.herokuapp.com"
+import { getAllProducts } from './routes.js'
 
 document.addEventListener('DOMContentLoaded', function(){
   const token = sessionStorage.getItem('Authorization')
   const name = sessionStorage.getItem('UserName')
-  console.log(token)
   if(token == null){
     console.log('Deslogado')
     const banner = document.getElementById('banner-text')
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function(){
   else{
     console.log('Logado')
     const navBarList = document.getElementById('navBarList')
-    const navItem = '<li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link" href="me.html">Me</a></li><li><a class="nav-link" href="pedidos.html">Order</a></li> '
+    const navItem = '<li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link" href="me.html">Me</a></li><li><a class="nav-link" href="pedidos.html">Order</a></li><li><button class="btn btn-danger" onclick="clearSession()" >Signout</button></li>'
     text = `<h4>Bem Vindo, ${name}</h4>`
     banner.innerHTML = text
     navBarList.innerHTML = navItem
@@ -23,18 +22,12 @@ document.addEventListener('DOMContentLoaded', function(){
   
 })
 
-function loadProducts(){
-    axios.get(`${url}/products`)
-    .then(response => {
-
-        const list = document.getElementById("div-list-products")
-        const products = response.data
-        console.log(products.id)
-       
-        list.innerHTML = '';
-
-            products.forEach(products => {
-                const card = 
+const productsList = getAllProducts();
+productsList.then(response => {
+  const products = response.data;
+  const list = document.getElementById("div-list-products");
+  products.forEach(products => {
+    const card = 
                 `<div class="col">
                 <div class="card">
                 <img src="./img/gato.jpg" class="card-img-top" alt="...">
@@ -49,21 +42,14 @@ function loadProducts(){
                 </div>
                 </div>
                 </div>`
+      const item = document.createElement('li');
+      item.innerHTML = card;
+  
+      list.appendChild(item);
                 
-                
-            
-                const item = document.createElement('li')
-                item.innerHTML = card;
-            
-                list.appendChild(item)
+    });
 
-            });
-        
-    })
-   
-    
-}
-loadProducts()
+});
 
 function viewProduct(id, user_id){
     sessionStorage.setItem('product_id', id)
@@ -71,3 +57,4 @@ function viewProduct(id, user_id){
     window.location.replace('product.html')
 
 }
+

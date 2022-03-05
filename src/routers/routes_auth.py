@@ -18,7 +18,7 @@ def create_user(user: User, db: Session = Depends(get_db)):
     # Verificar se existe 
     user_located = RepositoryUser(db).get_for_telephone(user.telephone)
     if user_located:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail='Desculpa alguem já esta usando esté número' )
+        raise HTTPException(status_code=404, detail="Alguem ja está usando este número!")
     # Criar Users
    
     user.password = get_password(user.password)

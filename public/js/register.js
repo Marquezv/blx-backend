@@ -1,3 +1,5 @@
+import { registerUser } from './routes.js'
+
 function variaveis(){
     const form_register = document.getElementById('form-register'),
         input_name = document.getElementById('name'),
@@ -20,10 +22,15 @@ function sendToBack(){
             telephone: telephone,
             password: password
         })
+        .then(response =>{
+            console.log(response)
+        })
+        .catch(response => console.log(response)
+        )
 
-        alert(`Parabéns ${name} funcionou tudo certinho!`)
-        //TROCAR
-        window.location.replace('login.html')
+        // alert(`Parabéns ${name} funcionou tudo certinho!`)
+        // //TROCAR
+        // window.location.replace('login.html')
 
     }
 }

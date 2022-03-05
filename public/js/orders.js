@@ -1,12 +1,3 @@
-    // {
-    //     "amount": 1,
-    //     "delivery_place": null,
-    //     "delivery_type": "Casa",
-    //     "notes": "Sem Observações",
-    //     "product_id": 4
-    // }
-
-
 const product_id = sessionStorage.getItem('product_id')
 const token = sessionStorage.getItem('Authorization')
 console.log(product_id)
@@ -14,6 +5,7 @@ const url = 'https://blx-app.herokuapp.com'
 
 /////////////
 document.addEventListener('DOMContentLoaded', function() {
+
     axios.get(`${url}/orders`, {
         headers: {
             'Authorization' : `Bearer ${token}`

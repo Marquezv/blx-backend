@@ -6,6 +6,7 @@
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="js/me.js" defer></script>
+  <script src="js/signout.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -25,6 +26,9 @@
             </li>
             <li class="nav-item" >
               <a class="nav-link" href="pedidos.html">Order</a>
+            </li>
+            <li>
+              <button class="btn btn-danger" onclick="clearSession()">Signout</button>
             </li>
           </ul>
         </nav>
@@ -49,7 +53,10 @@
                             <input id="name" type="text" class="form-control" placeholder="name" aria-label="name">                       
                         </div>
                         <div class="input-group mb-2">
-                          <textarea id="details" type="details" class="form-control" placeholder="details" aria-label="details"></textarea>
+                            <input type="file" class="form-control" id="customFile" />
+                        </div>
+                        <div class="input-group mb-2">
+                            <textarea id="details" type="details" class="form-control" placeholder="details" aria-label="details"></textarea>
                         </div>
                         <div class="input-group mb-2">
                             <input id="price" type="price" class="form-control" placeholder="price" aria-label="Price">
@@ -70,7 +77,7 @@
         </div>
         <!-- CARDS-1 -->
           <ul id="list-products" style="list-style: none; padding: 0%;">
-            <div id="div-list-products" class="row row-cols-1 row-cols-md-3 g-4">
+            <div id="div-list-products" class="row row-cols-2 row-cols-md-3 g-4">
             </div>
           </ul>
           
