@@ -1,5 +1,5 @@
-import { getOrder, soldOrder,  } from "./routes.js"
-import { tableOrders, searchOrders, navItens } from "./components.js"
+import { getOrder, soldOrder,  } from './routes.js'
+import { tableOrders, searchOrders, navItens } from './components.js'
 
 
 document.addEventListener('DOMContentLoaded', function() {

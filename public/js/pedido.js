@@ -1,5 +1,5 @@
-import { cardProducts, cardProductsDetails, navItens, order } from "./components.js"
-import { getProduct, getProductStore, postOrder } from "./routes.js"
+import { cardProducts, cardProductsDetails, navItens, order } from './components.js'
+import { getProduct, getProductStore, postOrder } from './routes.js'
 
 const product_id = sessionStorage.getItem('product_id')
 const user_id = sessionStorage.getItem('user_id')
@@ -51,7 +51,7 @@ function createOrder(product_id){
         const order = response.data
         const CreateOrder = {
             amount: 1,
-            delivery_place: 'Sera adicionado o endere',
+            delivery_place: 'Av. Jorge João Saad, 900 - Vila Inah, São Paulo - SP, 05618-001',
             delivery_type: option,
             notes: notes,
             product_id: product_id,

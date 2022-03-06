@@ -1,5 +1,5 @@
-import { cardProducts, cardProductsDetails, navItens } from "./components.js"
-import { getProduct, getProductStore, postOrder } from "./routes.js"
+import { cardProducts, cardProductsDetails, navItens } from './components.js'
+import { getProduct, getProductStore, postOrder } from './routes.js'
 
 const product_id = sessionStorage.getItem('product_id')
 const user_id = sessionStorage.getItem('user_id')
