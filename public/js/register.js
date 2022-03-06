@@ -1,5 +1,6 @@
 import { registerUser } from './routes.js'
-import { validate_input } from "./tools.js"
+import { validate_input } from './tools.js'
+import { navItens } from './components.js' 
 
 document.addEventListener('DOMContentLoaded', function(){
     const token = sessionStorage.getItem('Authorization')
