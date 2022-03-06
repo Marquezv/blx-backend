@@ -75,3 +75,16 @@ export function getProduct(product_id){
 export function getProductStore(user_id){
     return axios.get(`${url}/products/store/${user_id}`)
 }
+
+export function postOrder(CreateOrder){
+    const token = sessionStorage.getItem('Authorization')
+    return axios.post(`${url}/orders`, CreateOrder, {
+        headers : {
+            'Authorization' : `Bearer ${token}`
+        }
+    }).then(response => {
+        console.log(response)
+    }).catch(error => {
+        alert(error.response.data.detail)
+    })
+}

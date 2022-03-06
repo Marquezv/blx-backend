@@ -29,7 +29,7 @@ export const cardProductsDetails = function (product){
                 <label>R$ ${product.price}</label>
                 </p>
                 <div class="card-footer">
-                <button id="btn_addCart" class="btn" onclick="createOrder(${product.id})"> Adicionar ao Carrinho </button>
+                <button id="btn_addCart" class="btn"> Adicionar ao Carrinho </button>
                 </div>
             </div>
             </div>
