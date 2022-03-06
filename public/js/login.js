@@ -2,7 +2,6 @@ import { loginUser } from './routes.js'
 import { validate_input } from './tools.js'
 import { navItens } from './components.js'
 
-const url = 'https://blx-app.herokuapp.com'
 
 document.addEventListener('DOMContentLoaded', function(){
     const token = sessionStorage.getItem('Authorization')
