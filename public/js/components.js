@@ -107,7 +107,7 @@ export const order = function(product){
               <div class="input-group mb-3">
               
               <select class="custom-select" id="inputGroupSelect">
-                <option value="Retirada">Retirada</option>  
+                <option value="Retirada" selected>Retirada</option>  
                 <option value="Entrega">Entrega</option>       
               </select>
             </div>

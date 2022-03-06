@@ -84,6 +84,7 @@ export function postOrder(CreateOrder){
         }
     }).then(response => {
         console.log(response)
+        window.location.replace('orders.html')
     }).catch(error => {
         alert(error.response.data.detail)
     })

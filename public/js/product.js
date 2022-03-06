@@ -52,15 +52,7 @@ function createOrder(product_id){
         sessionStorage.setItem('user_id', order.user.id)
         console.log(order)
         window.location.replace('pedido.html')
-        // const CreateOrder = {
-        //     amount: 1,
-        //     delivery_place: 'pedido.product.delivery_place',
-        //     delivery_type: 'pedido.product.delivery_type',
-        //     notes: 'pedido.product.notes',
-        //     product_id: product_id,
-        //   }
-        //   console.log(product_id)
-        // postOrder(CreateOrder)
+        
       })    
   }
   

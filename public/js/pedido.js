@@ -32,25 +32,18 @@ document.addEventListener('DOMContentLoaded', function(){
         
         order(product_id)
         
-        const selectOption = document.getElementById('inputGroupSelect')
-        let option = '';
-        selectOption.onchange = function(){
-          option = this.value;
-          
-          return option
-        }
-        
-        console.log(notes)
-        createOrder(product_id, option)
+        createOrder(product_id)
     })
     
     
 })
 
 
-function createOrder(product_id, option){
+function createOrder(product_id){
   const btn_accept = document.getElementById('btn_accept')
   btn_accept.onclick = (event) =>{
+      const selectOption = document.getElementById('inputGroupSelect')
+      const option = selectOption.options[selectOption.selectedIndex].value;
       const notes = document.getElementById('notes').value
       event.preventDefault()
       getProduct(product_id)
@@ -59,12 +52,13 @@ function createOrder(product_id, option){
         const CreateOrder = {
             amount: 1,
             delivery_place: 'Sera adicionado o endere',
-            delivery_type: option.value,
+            delivery_type: option,
             notes: notes,
             product_id: product_id,
           }
           
         postOrder(CreateOrder)
+        
       })    
   }
   
