@@ -53,6 +53,33 @@
                     
                   </tbody>
             </table>
+            <!-- <div class="col-lg-5 " style="overflow: auto; max-height: 200px; margin: auto;">
+              <table class="">
+                <thead>
+                  <tr>
+                    <th class="lead" scope="col">#</th>
+                    <th class="lead" scope="col">Local</th>
+                    <th class="lead" scope="col">Casos</th>
+                    <th class="lead" scope="col">Mortes</th>
+                    <th class="lead" scope="col">Curas</th>
+                    <th class="lead" scope="col">População</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for place in places %}
+                  <tr>
+                    <th scope="row">{{ place.posicao }}</th>
+                    <td  class="align-middle"><h8>{{ place.local }}</h8></td>
+                    <td  class="align-middle"><h8>{{ place.totalCasos }}</h8></td>
+                    <td  class="align-middle"><h8>{{ place.totalMortes }}</h8></td>
+                    <td  class="align-middle"><h8>{{ place.totalRecuperados }}</h8></td>
+                    <td  class="align-middle"><h8>{{ place.populacao }}</h8></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+    
+            </div> -->
         </div>
         <!-- VENDAS-JUMBOTROM -->
         <div class="p-5 mb-4 bg-light rounded-3">

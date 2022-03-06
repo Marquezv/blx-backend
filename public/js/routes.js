@@ -88,3 +88,21 @@ export function postOrder(CreateOrder){
         alert(error.response.data.detail)
     })
 }
+
+export function getOrder(){
+    const token = sessionStorage.getItem('Authorization')
+    return axios.get(`${url}/orders`, {
+        headers : {
+            'Authorization' : `Bearer ${token}`
+        }
+    })
+}
+
+export function soldOrder(){
+    const token = sessionStorage.getItem('Authorization')
+    return axios.get(`${url}/orders/1/sold`, {
+        headers : {
+            'Authorization' : `Bearer ${token}`
+        }
+    })
+}

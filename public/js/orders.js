@@ -1,3 +1,5 @@
+import { getOrder, soldOrder } from "./routes.js"
+
 const product_id = sessionStorage.getItem('product_id')
 const token = sessionStorage.getItem('Authorization')
 console.log(product_id)
@@ -5,21 +7,14 @@ const url = 'https://blx-app.herokuapp.com'
 
 /////////////
 document.addEventListener('DOMContentLoaded', function() {
-
-    axios.get(`${url}/orders`, {
-        headers: {
-            'Authorization' : `Bearer ${token}`
-        }
-    }).then(response => {
+    getOrder()
+    .then(response => {
             
         createOrder(response)
     })
 
-    axios.get(`${url}/orders/1/sold`, {
-        headers: {
-            'Authorization' : `Bearer ${token}`
-        }
-    }).then(response => {
+    soldOrder()
+    .then(response => {
         viewSold(response)
     })
  });
