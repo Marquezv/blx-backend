@@ -1,4 +1,4 @@
-import { cardProducts, cardProductsDetails, navItens } from "./components.js"
+import { cardProducts, cardProductsDetails, navItens, order } from "./components.js"
 import { getProduct, getProductStore, postOrder } from "./routes.js"
 
 const product_id = sessionStorage.getItem('product_id')
@@ -17,29 +17,18 @@ document.addEventListener('DOMContentLoaded', function(){
         const divCards = document.getElementById('div-product')
         
         const text = `<h4>Nome da Loja: ${product.user.name}</h4>`
-        divCards.innerHTML = cardProductsDetails(product)
+        divCards.innerHTML = order(product)
         
         banner.innerHTML = text
 
         const btn_addCart = document.getElementById('btn_addCart')
-        createOrder(product_id)
+        order(product_id)
     })
     
-    loadListProducts(user_id)
+    
 })
 
-function loadListProducts(user_id){
-  getProductStore(user_id)
-  .then(response => {
-    const list = document.getElementById("list-products")
-    const products = response.data
-   
-        list.innerHTML = products.map(products => {
-          return  cardProducts(products)
-        }).join('');
-  })
 
-}
 
 function createOrder(product_id){
   btn_addCart.onclick = (event) =>{
@@ -47,25 +36,21 @@ function createOrder(product_id){
       getProduct(product_id)
       .then(response => {
         const order = response.data
-        sessionStorage.setItem('product_id', order.id)
-        sessionStorage.setItem('user_id', order.user.id)
-        window.location.replace('pedido.html')
-        // const CreateOrder = {
-        //     amount: 1,
-        //     delivery_place: 'pedido.product.delivery_place',
-        //     delivery_type: 'pedido.product.delivery_type',
-        //     notes: 'pedido.product.notes',
-        //     product_id: product_id,
-        //   }
-        //   console.log(product_id)
-        // postOrder(CreateOrder)
+
+        const CreateOrder = {
+            amount: 1,
+            delivery_place: 'pedido.product.delivery_place',
+            delivery_type: 'pedido.product.delivery_type',
+            notes: 'pedido.product.notes',
+            product_id: product_id,
+          }
+          console.log(product_id)
+        postOrder(CreateOrder)
       })    
   }
   
 }
-function addToCart(id, user_id){
-  
-}
+
 // Compradores vendo 
 
 // Dono vendo

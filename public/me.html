@@ -91,4 +91,13 @@
         </script>
 
 </body>
+<script>
+
+  // // VER PRODUTO E LOJA INDIVIDUAL
+  function viewProduct(id, user_id){
+      sessionStorage.setItem('product_id', id)
+      sessionStorage.setItem('user_id', user_id)
+      window.location.replace('product.html')
+  }
+  </script>
 </html>

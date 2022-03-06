@@ -20,7 +20,7 @@ export const navItens = function(token){
               <a class="nav-link" href="me.html">Me</a>
             </li>
             <li>
-              <a class="nav-link" href="pedidos.html">Order</a>
+              <a class="nav-link" href="orders.html">Order</a>
             </li>
             <li><button class="btn btn-danger" onclick="clearSession()" >Signout</button>
             </li>`   
@@ -81,10 +81,24 @@ export const searchOrders = function(){
                       
               <div class="input-group mb-2">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Padrão</span>
+                  <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
                 </div>
-                <input id="input_search" type="text" class="form-control" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-lg">
+                <input id="input_search" type="text" class="form-control" aria-describedby="inputGroup-sizing-lg">
               </div>
             </div> `
 }
 
+export const order = function(product){
+  return `
+          ${cardProducts(product)}
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Options</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option value="Entrega">Entrega</option>
+              <option value="Retirada">Retirada</option>
+            </select>
+          </div>
+          `
+}
