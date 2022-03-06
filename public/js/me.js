@@ -1,6 +1,7 @@
 import { validate_input, filterFloat } from './tools.js'
 import { createProduct } from './routes.js'
 import { getMyProducts } from './routes.js'
+import { cardProducts } from './components.js'
 
 const token = sessionStorage.getItem('Authorization')
 const url = 'https://blx-app.herokuapp.com'
@@ -41,33 +42,13 @@ function saveProduct(){
 saveProduct()
 
 function loadMyProducts(){
-    getMyProducts()
-    .then(response => {
+    const listCards = document.getElementById('div-list-products')
+    const productList = getMyProducts();
+    productList.then(response => {
         const products = response.data
-        const listCards = document.getElementById('div-list-products')
-
-        products.forEach(product => {
-            const card = 
-                `<div class="col">
-                <div class="card">
-                <img src="./img/gato.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-header">${product.name}</h5>
-                    <p class="card-text">
-                    <label>R$ ${product.price}</label>
-                    </p>
-                    <div class="card-footer">
-                    <button class="btn btn-success">Veja Mais</button>
-                    </div>
-                </div>
-                </div>
-                </div>`
-            const item = document.createElement('li')
-            item.innerHTML = card;
-    
-            listCards.appendChild(item)
-            
-        });
+        listCards.innerHTML = products.map((product) => {
+            return cardProducts(product)
+        }).join('');
     })
 }
 loadMyProducts()
