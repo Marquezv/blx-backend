@@ -17,3 +17,21 @@ export const cardProducts = function (product) {
             </div>`;
   }
   
+
+export const cardProductsDetails = function (product){
+    return  `<div class="col">
+            <div class="card">
+            <img src="./img/gato.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 >${product.name}</h5>
+                <p class="card-text">
+                <p>${product.details}</p>
+                <label>R$ ${product.price}</label>
+                </p>
+                <div class="card-footer">
+                <button id="btn_addCart" class="btn" onclick="createOrder(${product.id})"> Adicionar ao Carrinho </button>
+                </div>
+            </div>
+            </div>
+            </div>`
+}

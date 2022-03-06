@@ -67,3 +67,11 @@ export function getMyProducts(){
         }
     })
 }
+
+export function getProduct(product_id){
+    return axios.get(`${url}/products/${product_id}`)
+}
+
+export function getProductStore(user_id){
+    return axios.get(`${url}/products/store/${user_id}`)
+}
