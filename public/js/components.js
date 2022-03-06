@@ -10,7 +10,7 @@ export const cardProducts = function (product) {
                   <label>R$ ${product.price}</label>
                 </p>
                 <div class="card-footer">
-                <button class="btn" onclick="viewProduct()" > Veja Mais </button>
+                <button class="btn" onclick="viewProduct(${product.id},${product.user_id})" > Veja Mais </button>
                 </div>
             </div>
             </div>

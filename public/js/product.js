@@ -1,3 +1,5 @@
+import { cardProducts } from "./components.js"
+
 const url = 'https://blx-app.herokuapp.com'
 document.addEventListener('DOMContentLoaded', function(){
    
@@ -5,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const user_id = sessionStorage.getItem('user_id')
     const token = sessionStorage.getItem('Authorization')
     const name = sessionStorage.getItem('UserName')
+
     const banner = document.getElementById('banner-text')
     const navBarList = document.getElementById('navBarList')
 
@@ -34,22 +37,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const divCards = document.getElementById('div-product')
 
         const text = `<h4>Nome da Loja: ${product.user.name}</h4>`
-        const card = 
-                `<div class="col">
-                <div class="card">
-                <img src="./img/gato.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 >${product.name}</h5>
-                    <p class="card-text">
-                      <p>${product.details}</p>
-                      <label>R$ ${product.price}</label>
-                    </p>
-                    <div class="card-footer">
-                      <button class="btn" onclick="createOrder(${product.id})"> Adicionar ao Carrinho </button>
-                    </div>
-                </div>
-                </div>
-                </div>`
+        cardProducts(product)
 
                 
         banner.innerHTML = text
@@ -71,24 +59,8 @@ function loadListProducts(user_id){
     list.innerHTML = '';
 
         products.forEach(products => {
-            const productsList = 
-            `<div class="col">
-            <div class="card">
-            <img src="./img/gato.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 >${products.name}</h5>
-                <p class="card-text">
-                  <label>R$ ${products.price}</label>
-                </p>
-                <div class="card-footer">
-                <button class="btn" > Veja Mais </button>
-                </div>
-            </div>
-            </div>
-            </div>`
+            cardProducts(products)
             
-            
-        
             const item = document.createElement('li')
             item.innerHTML = productsList;
         

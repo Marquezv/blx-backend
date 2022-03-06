@@ -3,7 +3,7 @@ import { cardProducts } from './components.js'
 
 document.addEventListener('DOMContentLoaded', function(){
   const token = sessionStorage.getItem('Authorization')
-  const name = sessionStorage.getItem('UserName')
+  
   if(token == null){
     console.log('Deslogado')
     const banner = document.getElementById('banner-text')
@@ -13,9 +13,10 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   else{
     console.log('Logado')
+    const name = sessionStorage.getItem('UserName')
     const navBarList = document.getElementById('navBarList')
     const navItem = '<li><a class="nav-link" href="index.html">Home</a></li><li><a class="nav-link" href="me.html">Me</a></li><li><a class="nav-link" href="pedidos.html">Order</a></li><li><button class="btn btn-danger" onclick="clearSession()" >Signout</button></li>'
-    const text = `<h4>Bem Vindo, ${name} </h4>`
+    text = `<h4>Bem Vindo, ${name} </h4>`
     banner.innerHTML = text
     navBarList.innerHTML = navItem
 
@@ -40,11 +41,4 @@ function render(){
 
 render();
 
-// // VER PRODUTO E LOJA INDIVIDUAL
-// function viewProduct(id, user_id){
-//     sessionStorage.setItem('product_id', id)
-//     sessionStorage.setItem('user_id', user_id)
-//     window.location.replace('product.html')
-
-// }
 

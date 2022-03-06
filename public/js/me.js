@@ -19,7 +19,6 @@ function variaveis() {
 const [form_product, input_name, input_details, input_price, modal, btn_saved, btn_back] = variaveis()
 
 function saveProduct(){
-    console.log('Aqui')
     btn_saved.onclick = (event) =>{
         event.preventDefault()
         const input_group = modal.getElementsByTagName('input')
