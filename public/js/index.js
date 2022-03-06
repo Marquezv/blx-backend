@@ -1,4 +1,5 @@
 import { getAllProducts } from './routes.js'
+import { cardProducts } from './components.js'
 
 document.addEventListener('DOMContentLoaded', function(){
   const token = sessionStorage.getItem('Authorization')
@@ -20,41 +21,30 @@ document.addEventListener('DOMContentLoaded', function(){
 
   }
   
-})
-
-const productsList = getAllProducts();
-productsList.then(response => {
-  const products = response.data;
-  const list = document.getElementById("div-list-products");
-  products.forEach(products => {
-    const card = 
-                `<div class="col">
-                <div class="card">
-                <img src="./img/gato.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 >${products.name}</h5>
-                    <p class="card-text">
-                      <label>R$ ${products.price}</label>
-                    </p>
-                    <div class="card-footer">
-                    <button class="btn" onclick="viewProduct(${products.id}, ${products.user.id})" > Veja Mais </button>
-                    </div>
-                </div>
-                </div>
-                </div>`
-      const item = document.createElement('li');
-      item.innerHTML = card;
-  
-      list.appendChild(item);
-                
-    });
-
 });
-// VER PRODUTO E LOJA INDIVIDUAL
-function viewProduct(id, user_id){
-    sessionStorage.setItem('product_id', id)
-    sessionStorage.setItem('user_id', user_id)
-    window.location.replace('product.html')
 
-}
+
+function render(){
+  const tela = document.getElementById("div-list-products");
+  const productsList = getAllProducts();
+  productsList.then(response => {
+    const products = response.data
+    tela.innerHTML = products.map((product) => {
+      return cardProducts(product)
+    }).join('');
+    
+      
+  });
+    
+};
+
+render();
+
+// // VER PRODUTO E LOJA INDIVIDUAL
+// function viewProduct(id, user_id){
+//     sessionStorage.setItem('product_id', id)
+//     sessionStorage.setItem('user_id', user_id)
+//     window.location.replace('product.html')
+
+// }
 
