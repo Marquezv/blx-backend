@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const product = response.data
         const banner = document.getElementById('banner-text')
         const divCards = document.getElementById('div-product')
-        
+        const ower = sessionStorage.setItem('ower', `${product.user.name}`)
         const text = `<h4>Nome da Loja: ${product.user.name}</h4>`
         divCards.innerHTML = cardProductsDetails(product)
         
@@ -42,6 +42,7 @@ function loadListProducts(user_id){
 }
 
 function createOrder(product_id){
+  
   btn_addCart.onclick = (event) =>{
       event.preventDefault()
       getProduct(product_id)
@@ -49,6 +50,7 @@ function createOrder(product_id){
         const order = response.data
         sessionStorage.setItem('product_id', order.id)
         sessionStorage.setItem('user_id', order.user.id)
+        console.log(order)
         window.location.replace('pedido.html')
         // const CreateOrder = {
         //     amount: 1,

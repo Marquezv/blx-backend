@@ -55,8 +55,8 @@ class Order(BaseModel):
     id: Optional[int] = None
     amount: int = 1
     delivery_place: Optional[str]
-    delivery_type: str = "Casa"
-    notes: Optional[str] = 'Sem Observações'
+    delivery_type: Optional[str] 
+    notes: Optional[str] 
     
     user_id: Optional[int]
     product_id: Optional[int]

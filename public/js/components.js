@@ -87,18 +87,50 @@ export const searchOrders = function(){
               </div>
             </div> `
 }
-
+////////////////////////////
 export const order = function(product){
-  return `
-          ${cardProducts(product)}
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Options</label>
+  const name = sessionStorage.getItem('UserName')
+  const ower = sessionStorage.getItem('ower')
+  return `<div class="col">
+          <div class="card">
+          <img src="./img/gato.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+              <h5 >${product.name}</h5>
+              <p class="card-text">
+                <ul>
+                  <li><label><h5>R$ ${product.price}</h5></label></li>
+                  <li><label>Buyer: ${name}</label></li>
+                  <li><label>Ower: ${ower}</label></li>
+                  
+                </ul>
+              </p>
+              <div class="input-group mb-3">
+              
+              <select class="custom-select" id="inputGroupSelect">
+                <option value="Retirada">Retirada</option>  
+                <option value="Entrega">Entrega</option>       
+              </select>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-              <option value="Entrega">Entrega</option>
-              <option value="Retirada">Retirada</option>
-            </select>
+            <div class="input-group mb-2">
+              <textarea id="notes" type="notes" class="form-control" placeholder="notes" aria-label="notes"></textarea>
+            </div>
+            
+            <div class="input-group mb-2">
+              <button id="btn_accept" class="btn btn-success"> Comprar </button>
+              <button id="btn_cancel" class="btn btn-danger"> Cancelar </button>
+            </div>
+           
           </div>
+          </div>
+          </div>
+
           `
+}
+
+export const inputAddress = function(){
+    return `<div class="input-group">
+              <span class="input-group-text">Address</span>
+              <input type="text" aria-label="First name" class="form-control">
+              <input type="text" aria-label="Last name" class="form-control">
+            </div>`
 }

@@ -5,6 +5,7 @@ const product_id = sessionStorage.getItem('product_id')
 const user_id = sessionStorage.getItem('user_id')
 const token = sessionStorage.getItem('Authorization')
 
+/////////////////////////////////
 document.addEventListener('DOMContentLoaded', function(){
    
     const navBar = document.getElementById('navBarList')  
@@ -12,39 +13,57 @@ document.addEventListener('DOMContentLoaded', function(){
 
     getProduct(product_id)
     .then(response => {
+        function variaveis(){
+          const btn_accept = document.getElementById('btn_accept'),
+                btn_cancel = document.getElementById('btn_cancel')
+          return [btn_accept, btn_cancel]
+        }
+        const [btn_accept, btn_cancel] = variaveis()
+        
         const product = response.data
         const banner = document.getElementById('banner-text')
         const divCards = document.getElementById('div-product')
         
-        const text = `<h4>Nome da Loja: ${product.user.name}</h4>`
+        const text = `<h4>Seu Pedido: </h4>`
         divCards.innerHTML = order(product)
         
         banner.innerHTML = text
-
-        const btn_addCart = document.getElementById('btn_addCart')
+        
+        
         order(product_id)
+        
+        const selectOption = document.getElementById('inputGroupSelect')
+        let option = '';
+        selectOption.onchange = function(){
+          option = this.value;
+          
+          return option
+        }
+        
+        console.log(notes)
+        createOrder(product_id, option)
     })
     
     
 })
 
 
-
-function createOrder(product_id){
-  btn_addCart.onclick = (event) =>{
+function createOrder(product_id, option){
+  const btn_accept = document.getElementById('btn_accept')
+  btn_accept.onclick = (event) =>{
+      const notes = document.getElementById('notes').value
       event.preventDefault()
       getProduct(product_id)
       .then(response => {
         const order = response.data
-
         const CreateOrder = {
             amount: 1,
-            delivery_place: 'pedido.product.delivery_place',
-            delivery_type: 'pedido.product.delivery_type',
-            notes: 'pedido.product.notes',
+            delivery_place: 'Sera adicionado o endere',
+            delivery_type: option.value,
+            notes: notes,
             product_id: product_id,
           }
-          console.log(product_id)
+          
         postOrder(CreateOrder)
       })    
   }
