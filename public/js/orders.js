@@ -1,5 +1,5 @@
-import { getOrder, soldOrder } from "./routes.js"
-import { tableOrders } from "./components.js"
+import { getOrder, soldOrder,  } from "./routes.js"
+import { tableOrders, searchOrders } from "./components.js"
 
 const product_id = sessionStorage.getItem('product_id')
 const token = sessionStorage.getItem('Authorization')
@@ -8,6 +8,10 @@ const url = 'https://blx-app.herokuapp.com'
 
 /////////////
 document.addEventListener('DOMContentLoaded', function() {
+
+    const searchArea = document.getElementById('searchOrders')
+    searchArea.innerHTML = searchOrders()
+
     getOrder()
     .then(response => {
             
@@ -18,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => {
         viewSold(response)
     })
+    input_search();
  });
-
 
 
 function createOrder(response){
@@ -48,3 +52,22 @@ function viewSold(response){
             table.appendChild(row)
         })
 }
+
+function input_search(){
+    const input = document.getElementById('input_search');
+    input.addEventListener('keyup', pesquisaTabela())
+}
+
+function pesquisaTabela() {
+  var filter, table, tr, td, i;
+  table = document.getElementById("data_order");
+  return function() {
+    tr = table.querySelectorAll("tbody tr");
+    filter = this.value.toUpperCase();
+    for (i = 0; i < tr.length; i++) {
+      var match = tr[i].innerHTML.toUpperCase().indexOf(filter) > -1;
+      tr[i].style.display = match ? "block" : "none";
+    }
+  }
+}
+
