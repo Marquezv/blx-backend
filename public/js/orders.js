@@ -1,13 +1,11 @@
 import { getOrder, soldOrder,  } from "./routes.js"
-import { tableOrders, searchOrders } from "./components.js"
+import { tableOrders, searchOrders, navItens } from "./components.js"
 
-const product_id = sessionStorage.getItem('product_id')
-const token = sessionStorage.getItem('Authorization')
-console.log(product_id)
-const url = 'https://blx-app.herokuapp.com'
 
-/////////////
 document.addEventListener('DOMContentLoaded', function() {
+    const token = sessionStorage.getItem('Authorization')
+    const navBar = document.getElementById('navBarList')  
+    navBar.innerHTML = navItens(token);
 
     const searchArea = document.getElementById('searchOrders')
     searchArea.innerHTML = searchOrders()
@@ -38,7 +36,6 @@ function createOrder(response){
         
         })
 }
-
 
 function viewSold(response){
    

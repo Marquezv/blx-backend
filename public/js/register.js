@@ -1,6 +1,12 @@
 import { registerUser } from './routes.js'
 import { validate_input } from "./tools.js"
 
+document.addEventListener('DOMContentLoaded', function(){
+    const token = sessionStorage.getItem('Authorization')
+    const navBar = document.getElementById('navBarList')  
+    navBar.innerHTML = navItens(token);
+})
+
 function variaveis(){
     const form_register = document.getElementById('form-register'),
         input_name = document.getElementById('name'),

@@ -1,4 +1,4 @@
-import { cardProducts, cardProductsDetails } from "./components.js"
+import { cardProducts, cardProductsDetails, navItens } from "./components.js"
 import { getProduct, getProductStore, postOrder } from "./routes.js"
 
 const product_id = sessionStorage.getItem('product_id')
@@ -7,7 +7,8 @@ const token = sessionStorage.getItem('Authorization')
 
 document.addEventListener('DOMContentLoaded', function(){
    
-    console.log(token)
+    const navBar = document.getElementById('navBarList')  
+    navBar.innerHTML = navItens(token);
 
     getProduct(product_id)
     .then(response => {

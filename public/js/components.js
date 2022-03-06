@@ -1,5 +1,35 @@
 //=====================
 // [Componente :)]
+export const navItens = function(token){
+  if(token == null){
+    return `<li class="nav-item">
+              <a class="nav-link"  href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="register.html">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" active href="login.html">Login</a>
+            </li>`
+  }
+  else {
+    return `<li>
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li>
+              <a class="nav-link" href="me.html">Me</a>
+            </li>
+            <li>
+              <a class="nav-link" href="pedidos.html">Order</a>
+            </li>
+            <li><button class="btn btn-danger" onclick="clearSession()" >Signout</button>
+            </li>`   
+  }
+
+}
+
+
+
 export const cardProducts = function (product) {
     return `<div class="col">
             <div class="card">
@@ -57,3 +87,4 @@ export const searchOrders = function(){
               </div>
             </div> `
 }
+
