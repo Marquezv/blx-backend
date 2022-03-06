@@ -35,3 +35,12 @@ export const cardProductsDetails = function (product){
             </div>
             </div>`
 }
+
+export const tableOrders = function(orders){
+      return  `<th scope="row">${orders.id}</th>
+              <td>${orders.product.name}</td> 
+              <td>${orders.delivery_type}</td>
+              <td>${orders.notes}</td>
+              <td>${orders.user.name}</td>
+              `
+}

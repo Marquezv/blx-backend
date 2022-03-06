@@ -1,4 +1,5 @@
 import { getOrder, soldOrder } from "./routes.js"
+import { tableOrders } from "./components.js"
 
 const product_id = sessionStorage.getItem('product_id')
 const token = sessionStorage.getItem('Authorization')
@@ -26,16 +27,9 @@ function createOrder(response){
     const orders = response.data
     
         orders.forEach(orders => {
-            const OrderOnTable =  `
-            <th scope="row">${orders.id}</th>
-            <td>${orders.product.name}</td>
-            <td>${orders.delivery_type}</td>
-            <td>${orders.notes}</td>
-            <td>${orders.user.name}</td>
-        `
-            const table = document.getElementById("table-body")
+            const table = document.getElementById("table-body-view-orders")
             const row = document.createElement('tr')
-            row.innerHTML = OrderOnTable;
+            row.innerHTML = tableOrders(orders);
             table.appendChild(row)
         
         })
@@ -44,19 +38,13 @@ function createOrder(response){
 
 function viewSold(response){
    
-    const orders = response.data
+    const solds = response.data
     
-        orders.forEach(orders => {
-            const OrderOnTable =  `
-            <th scope="row">${orders.id}</th>
-            <td>${orders.product.name}</td>
-            <td>${orders.delivery_type}</td>
-            <td>${orders.notes}</td>
-            <td>${orders.user.name}</td>
-        `
+        solds.forEach(solds => {
+            
             const table = document.getElementById("table-body-view-solds")
             const row = document.createElement('tr')
-            row.innerHTML = OrderOnTable;
+            row.innerHTML = tableOrders(solds);
             table.appendChild(row)
         })
 }
