@@ -1,10 +1,18 @@
 import { validate_input, filterFloat } from './tools.js'
 import { createProduct } from './routes.js'
 import { getMyProducts } from './routes.js'
-import { cardProducts } from './components.js'
+import { cardProducts, navItens} from './components.js'
 
 const token = sessionStorage.getItem('Authorization')
 const url = 'https://blx-app.herokuapp.com'
+
+document.addEventListener('DOMContentLoaded', function(){
+    const token = sessionStorage.getItem('Authorization')
+    const navBar = document.getElementById('navBarList')
+  
+    navBar.innerHTML = navItens(token)
+  
+})
 
 function variaveis() {
     const form_product = document.getElementById('form-product'),
