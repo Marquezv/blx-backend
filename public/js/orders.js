@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     getOrder()
     .then(response => {
-            
+        console.log(response)
         createOrder(response)
     })
 
@@ -33,21 +33,21 @@ function createOrder(response){
             const row = document.createElement('tr')
             row.innerHTML = tableOrders(orders);
             table.appendChild(row)
-            console.log(orders)
+            
         })
 }
 
 function viewSold(response){
    
     const solds = response.data
-    
+    console.log(solds)
         solds.forEach(solds => {
             
             const table = document.getElementById("table-body-view-solds")
             const row = document.createElement('tr')
             row.innerHTML = tableOrders(solds);
             table.appendChild(row)
-            console.log(solds)
+            
         })
 }
 

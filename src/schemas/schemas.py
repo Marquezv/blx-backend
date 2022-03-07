@@ -61,7 +61,7 @@ class Order(BaseModel):
     user_id: Optional[int]
     product_id: Optional[int]
 
-    user: Optional[User]
+    user: Optional[SimpleUser]
     product: Optional[Product]
 
     class Config:
