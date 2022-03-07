@@ -1,5 +1,5 @@
 import { getOrder, getSold  } from './routes.js'
-import { tableOrders, searchOrders, navItens } from './components.js'
+import { tableOrders, searchOrders, navItens, order } from './components.js'
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -33,7 +33,7 @@ function createOrder(response){
             const row = document.createElement('tr')
             row.innerHTML = tableOrders(orders);
             table.appendChild(row)
-        
+            console.log(orders)
         })
 }
 
@@ -47,6 +47,7 @@ function viewSold(response){
             const row = document.createElement('tr')
             row.innerHTML = tableOrders(solds);
             table.appendChild(row)
+            console.log(solds)
         })
 }
 

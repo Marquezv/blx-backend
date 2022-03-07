@@ -61,8 +61,8 @@ class Order(BaseModel):
     user_id: Optional[int]
     product_id: Optional[int]
 
-    user: Optional[SimpleUser]
-    product: Optional[SimpleProduct]
+    user: Optional[User]
+    product: Optional[Product]
 
     class Config:
         orm_mode = True
