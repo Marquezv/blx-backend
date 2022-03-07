@@ -9,16 +9,13 @@ document.addEventListener('DOMContentLoaded', function(){
    
     const navBar = document.getElementById('navBarList')  
     navBar.innerHTML = navItens(token);
-
     getProduct(product_id)
     .then(response => {
         const product = response.data
         const banner = document.getElementById('banner-text')
         const divCards = document.getElementById('div-product')
-        const ower = sessionStorage.setItem('ower', `${product.user.name}`)
         const text = `<h4>Nome da Loja: ${product.user.name}</h4>`
         divCards.innerHTML = cardProductsDetails(product)
-        
         banner.innerHTML = text
 
         const btn_addCart = document.getElementById('btn_addCart')
@@ -57,9 +54,7 @@ function createOrder(product_id){
   }
   
 }
-function addToCart(id, user_id){
-  
-}
+
 // Compradores vendo 
 
 // Dono vendo

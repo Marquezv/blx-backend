@@ -1,4 +1,4 @@
-import { getOrder, soldOrder,  } from './routes.js'
+import { getOrder, getSold  } from './routes.js'
 import { tableOrders, searchOrders, navItens } from './components.js'
 
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         createOrder(response)
     })
 
-    soldOrder()
+    getSold()
     .then(response => {
         viewSold(response)
     })

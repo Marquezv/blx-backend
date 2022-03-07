@@ -64,7 +64,7 @@ function createOrder(product_id){
   
 }
 
-// Compradores vendo 
+ // Compradores vendo
 
 // Dono vendo
 

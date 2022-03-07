@@ -39,3 +39,4 @@ export function mountProduct(products_name, products_details, products_price, li
 
     list.appendChild(item)
 }
+

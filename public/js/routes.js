@@ -68,6 +68,15 @@ export function getMyProducts(){
     })
 }
 
+export function putMyProduct(product_id, PutProduct){
+    const token = sessionStorage.getItem('Authorization')
+    return axios.put(`${url}/products/${product_id}`, PutProduct, {
+        headers: {
+            'Authorization' : `Bearer ${token}`
+        }
+    })
+}
+
 export function getProduct(product_id){
     return axios.get(`${url}/products/${product_id}`)
 }
@@ -99,7 +108,7 @@ export function getOrder(){
     })
 }
 
-export function soldOrder(){
+export function getSold(){
     const token = sessionStorage.getItem('Authorization')
     return axios.get(`${url}/orders/1/sold`, {
         headers : {

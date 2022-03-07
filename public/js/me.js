@@ -59,3 +59,7 @@ function loadMyProducts(){
     })
 }
 loadMyProducts()
+
+// function putProduct(){
+
+// }
