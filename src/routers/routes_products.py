@@ -1,4 +1,4 @@
-from itertools import product
+import shutil
 from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 from sqlalchemy.orm import Session
@@ -7,6 +7,9 @@ from src.schemas.schemas import Product, SimpleProduct, User
 from src.infra.sqlalchemy.config.database import get_db
 from src.infra.sqlalchemy.repository.rep_product import RepositoryProduct
 from src.routers.auth_utils import get_logged_user
+
+from starlette.responses import StreamingResponse
+import io
 
 router = APIRouter()
 
@@ -28,7 +31,8 @@ def select_product(product_id: int, db: Session = Depends(get_db)):
 
 # Criar Produtos
 @router.post('/products', status_code=status.HTTP_201_CREATED, response_model=Product)
-def create_products(product: Product, user: User = Depends(get_logged_user), db: Session = Depends(get_db)):
+def create_products(product: Product,  user: User = Depends(get_logged_user), db: Session = Depends(get_db)):
+   
     created_product = RepositoryProduct(db).create(product, user.id)
     return created_product
 

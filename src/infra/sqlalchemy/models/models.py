@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Float, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from src.infra.sqlalchemy.config.database import Base
 
+
 class Product(Base):
     
     __tablename__ = 'product'
@@ -14,6 +15,8 @@ class Product(Base):
     available = Column(Boolean)
     user_id = Column(Integer, ForeignKey('user.id', name='fk_user'))
     user = relationship('User', back_populates='product')
+    
+
 
 class User(Base):
     __tablename__ = 'user'

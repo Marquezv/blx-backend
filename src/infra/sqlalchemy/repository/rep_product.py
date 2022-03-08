@@ -15,7 +15,7 @@ class RepositoryProduct():
             details = product.details,
             price = product.price,
             available = product.available,
-            user_id = user_id
+            user_id = user_id,
         )
 
         self.db.add(db_product)
